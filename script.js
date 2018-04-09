@@ -14,7 +14,7 @@ angular.module('IosSafariPdfTestApp', [])
         // Generate BLob from Base64 encoded PDF Binary
         var file = new Blob([$scope.convertBase64ToByteArray(res)], {
             type: 'application/pdf'
-        })
+        });
 
         url = $window.URL || $window.webkitURL;
         $scope.fileUrl = url.createObjectURL(file);
@@ -25,7 +25,7 @@ angular.module('IosSafariPdfTestApp', [])
         // works but only without addblocker 
         // var downloadLink = angular.element('<a></a>');
         // downloadLink.attr('href', $scope.fileUrl);
-        // downloadLink.attr('download', "preisblatt.pdf");
+        // downloadLink.attr('download', "titel.pdf");
         // downloadLink.attr('target', '_blank');
         // downloadLink[0].click();
 
@@ -33,16 +33,16 @@ angular.module('IosSafariPdfTestApp', [])
         var pdfWindow = $window.open('', 'name');
         pdfWindow.focus();
         pdfWindow.document.open();
-        pdfWindow.document.write("<html><head><title>preisblatt.pdf</title></head><body><h1>Dokument wird geladen . . .</h1></body></html>");
+        pdfWindow.document.write("<html><head><title>titel.pdf</title></head><body><h1>Dokument wird geladen . . .</h1></body></html>");
 
         // WRITING DATA FROM BLOB INTO NEW WINDOW (REFERENCED BY NAME)
         // Mind the iOS Safari workaround -> A link must be clicked
         var downloadLink = angular.element('<a></a>');
         downloadLink.attr('href', $scope.fileUrl);
-        downloadLink.attr('download', "preisblatt.pdf");
+        downloadLink.attr('download', "titel.pdf");
         downloadLink.attr('target', 'name');
         downloadLink[0].click();
-    }
+    };
 
     /**
      * Helper to get a Uint8Array with PDF Binary
@@ -54,16 +54,16 @@ angular.module('IosSafariPdfTestApp', [])
 
         for (var i = 0; i < byteCharacters.length; i++) {
             byteNumbers[i] = byteCharacters.charCodeAt(i);
-        }
+        };
 
         return new Uint8Array(byteNumbers);
-    }
+    };
 
     /**
      * Fakes call of REST API to load Base64 encoded PDF binary
      */
     $scope.getRes = function() {
-        return     'JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwog' +
+        return 'JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwog' +
         'IC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAv' +
         'TWVkaWFCb3ggWyAwIDAgMjAwIDIwMCBdCiAgL0NvdW50IDEKICAvS2lkcyBbIDMgMCBSIF0K' +
         'Pj4KZW5kb2JqCgozIDAgb2JqCjw8CiAgL1R5cGUgL1BhZ2UKICAvUGFyZW50IDIgMCBSCiAg' +
