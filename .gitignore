@@ -1,0 +1,5 @@
+# asset folder
+/assets/
+
+# macOS
+.DS_Store
